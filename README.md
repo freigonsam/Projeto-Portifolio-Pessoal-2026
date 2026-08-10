@@ -10,6 +10,9 @@ Esta API REST permite criar, listar, buscar, atualizar e remover blocos de notas
 - Remover um bloco de notas
 - Autenticação com login simples
 - Validação de tamanho mínimo e máximo para título e conteúdo
+- Prevenção de títulos duplicados
+- Proteção contra múltiplas tentativas inválidas de login
+- Tratamento de tokens malformados, expirados e inválidos
 
 ## Estrutura do projeto
 - src/routes: definição das rotas da API
@@ -35,6 +38,9 @@ Esta API REST permite criar, listar, buscar, atualizar e remover blocos de notas
 ## Regras de validação
 - Título: entre 3 e 20 caracteres
 - Conteúdo: entre 3 e 200 caracteres
+- Título e conteúdo não podem ser vazios ou compostos apenas por espaços
+- Atualizações precisam informar pelo menos um campo válido
+- Títulos duplicados não são permitidos
 
 ## Autenticação
 Use o endpoint de login para obter um token JWT:
@@ -75,6 +81,12 @@ Os testes funcionais da API estão localizados na pasta tests e podem ser execut
 ```bash
 npm test
 ```
+
+A suíte cobre cenários de:
+- criação, leitura, atualização e remoção de notas
+- validações de entrada e regras de negócio
+- autenticação e tratamento de tokens
+- tentativas repetidas de login e erros de requisição
 
 Também existe um workflow do GitHub Actions em .github/workflows/tests.yml para executar os testes automaticamente em push e pull request.
 
