@@ -1,0 +1,30 @@
+{
+  "name": "Projeto-Portifolio-Pessoal-2026",
+  "version": "1.0.0",
+  "description": "Demonstração PPP de teste de software",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "jest --runInBand"
+  },
+  "keywords": [],
+  "author": "samuel freire",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/freigonsam/Projeto-Portifolio-Pessoal-2026.git"
+  },
+  "bugs": {
+    "url": "https://github.com/freigonsam/Projeto-Portifolio-Pessoal-2026/issues"
+  },
+  "homepage": "https://github.com/freigonsam/Projeto-Portifolio-Pessoal-2026#readme",
+  "dependencies": {
+    "express": "^5.2.1",
+    "jsonwebtoken": "^9.0.3",
+    "supertest": "^7.2.2",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
