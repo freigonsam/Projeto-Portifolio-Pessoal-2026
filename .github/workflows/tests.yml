@@ -23,4 +23,17 @@ jobs:
         run: npm install
 
       - name: Executar testes
+        id: test-run
         run: npm test
+        continue-on-error: true
+
+      - name: Publicar relatório HTML
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: mochawesome-report
+          path: reports/
+
+      - name: Validar resultado dos testes
+        if: steps.test-run.outcome == 'failure'
+        run: exit 1

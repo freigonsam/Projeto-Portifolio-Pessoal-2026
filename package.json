@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "test": "mocha \"tests/**/*.test.js\""
+    "test": "mocha \"tests/**/*.test.js\" --reporter mochawesome --reporter-options reportDir=reports,reportFilename=test-report,inlineAssets=true"
   },
   "keywords": [],
   "author": "samuel freire",
@@ -26,6 +26,7 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
-    "mocha": "^10.8.2"
+    "mocha": "^10.8.2",
+    "mochawesome": "^7.0.0"
   }
 }
