@@ -88,6 +88,14 @@ A suíte cobre cenários de:
 - autenticação e tratamento de tokens
 - tentativas repetidas de login e erros de requisição
 
+Ao executar os testes, o projeto gera automaticamente um relatório HTML com o Mochawesome em:
+
+```text
+reports/test-report.html
+```
+
+Esse relatório também é publicado como artefato na pipeline do GitHub Actions ao final da execução, permitindo visualização e compartilhamento do resultado dos testes.
+
 Também existe um workflow do GitHub Actions em .github/workflows/tests.yml para executar os testes automaticamente em push e pull request.
 
 ## Documentação Swagger
