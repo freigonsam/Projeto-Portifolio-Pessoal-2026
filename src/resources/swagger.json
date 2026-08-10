@@ -183,6 +183,39 @@
             "description": "Token não fornecido ou inválido"
           }
         }
+      },
+      "delete": {
+        "summary": "Remover um bloco de notas",
+        "security": [{ "bearerAuth": [] }],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": { "type": "integer" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Bloco removido com sucesso",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Bloco não encontrado"
+          },
+          "401": {
+            "description": "Token não fornecido ou inválido"
+          }
+        }
       }
     }
   },

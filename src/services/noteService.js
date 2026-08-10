@@ -31,6 +31,17 @@ class NoteService {
     note.updatedAt = new Date().toISOString();
     return note;
   }
+
+  deleteNote(id) {
+    const noteIndex = this.notes.findIndex((note) => note.id === Number(id));
+
+    if (noteIndex === -1) {
+      return null;
+    }
+
+    const [deletedNote] = this.notes.splice(noteIndex, 1);
+    return deletedNote;
+  }
 }
 
 module.exports = new NoteService();

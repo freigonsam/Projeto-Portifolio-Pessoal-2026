@@ -4,8 +4,16 @@ const authMiddleware = require('../middleware/authMiddleware');
 
 const router = express.Router();
 
+router.all('/login', (req, res, next) => {
+  if (req.method === 'POST') {
+    return next();
+  }
+
+  return res.status(404).json({ message: 'Método não permitido' });
+});
+
 router.post('/login', (req, res) => {
-  const { username, password } = req.body;
+  const { username, password } = req.body || {};
 
   if (username === 'admin' && password === '123456') {
     const token = require('jsonwebtoken').sign({ username }, 'segredo', { expiresIn: '1h' });
@@ -21,5 +29,6 @@ router.post('/notes', noteController.createNote);
 router.get('/notes', noteController.listNotes);
 router.get('/notes/:id', noteController.getNote);
 router.put('/notes/:id', noteController.updateNote);
+router.delete('/notes/:id', noteController.deleteNote);
 
 module.exports = router;
