@@ -105,6 +105,21 @@ class PostNotesTests {
         expect(response.status).to.equal(400);
         expect(response.body.message).to.equal('Conteúdo deve ter entre 3 e 200 caracteres');
       });
+
+      it('deve rejeitar título duplicado', async () => {
+        await request(app)
+          .post('/notes')
+          .set('Authorization', `Bearer ${token}`)
+          .send(fixtures.validNote);
+
+        const response = await request(app)
+          .post('/notes')
+          .set('Authorization', `Bearer ${token}`)
+          .send(fixtures.duplicateTitle);
+
+        expect(response.status).to.equal(400);
+        expect(response.body.message).to.equal('Já existe uma nota com este título');
+      });
     });
   }
 }

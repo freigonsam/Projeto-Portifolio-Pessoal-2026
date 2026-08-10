@@ -37,4 +37,19 @@ describe('Endpoint /login', () => {
 
     expect(response.status).to.equal(404);
   });
+
+  it('deve bloquear login após várias tentativas inválidas', async () => {
+    for (let i = 0; i < 3; i += 1) {
+      await request(app)
+        .post('/login')
+        .send({ username: 'admin', password: 'senha-errada' });
+    }
+
+    const response = await request(app)
+      .post('/login')
+      .send({ username: 'admin', password: 'senha-errada' });
+
+    expect(response.status).to.equal(429);
+    expect(response.body.message).to.equal('Muitas tentativas. Tente novamente mais tarde');
+  });
 });

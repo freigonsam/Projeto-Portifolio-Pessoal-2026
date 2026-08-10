@@ -1,8 +1,11 @@
 const request = require('supertest');
 const app = require('../../src/app');
+const noteRoutes = require('../../src/routes/noteRoutes');
 const fixtures = require('../fixtures/notesFixtures');
 
 async function loginAndGetToken() {
+  noteRoutes.resetLoginAttempts();
+
   const response = await request(app)
     .post('/login')
     .send(fixtures.validCredentials);

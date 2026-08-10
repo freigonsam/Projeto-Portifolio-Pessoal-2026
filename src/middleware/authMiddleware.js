@@ -7,17 +7,21 @@ module.exports = (req, res, next) => {
     return res.status(401).json({ message: 'Token não fornecido' });
   }
 
-  const token = authHeader.split(' ')[1];
+  const parts = authHeader.split(' ');
 
-  if (!token) {
-    return res.status(401).json({ message: 'Token inválido' });
+  if (parts.length !== 2 || parts[0] !== 'Bearer' || !parts[1]) {
+    return res.status(401).json({ message: 'Token malformado' });
   }
 
   try {
-    const decoded = jwt.verify(token, 'segredo');
+    const decoded = jwt.verify(parts[1], 'segredo');
     req.user = decoded;
     return next();
   } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ message: 'Token expirado' });
+    }
+
     return res.status(401).json({ message: 'Token inválido' });
   }
 };

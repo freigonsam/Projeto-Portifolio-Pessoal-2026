@@ -40,5 +40,10 @@ module.exports = {
   longContent: {
     title: 'Título válido',
     content: 'a'.repeat(201)
-  }
+  },
+  duplicateTitle: {
+    title: 'Nota de teste',
+    content: 'Outro conteúdo válido'
+  },
+  emptyBody: {}
 };

@@ -1,13 +1,15 @@
 # API Rest de Bloco de Notas
 
-Esta API REST permite criar, listar, buscar e atualizar blocos de notas, com autenticação simples via JWT.
+Esta API REST permite criar, listar, buscar, atualizar e remover blocos de notas, com autenticação simples via JWT.
 
 ## Funcionalidades
 - Criar um novo bloco de notas
 - Listar todos os blocos de notas
 - Buscar um bloco de notas por ID
 - Atualizar um bloco de notas
+- Remover um bloco de notas
 - Autenticação com login simples
+- Validação de tamanho mínimo e máximo para título e conteúdo
 
 ## Estrutura do projeto
 - src/routes: definição das rotas da API
@@ -29,6 +31,10 @@ Esta API REST permite criar, listar, buscar e atualizar blocos de notas, com aut
 3. A API ficará disponível em:
    - http://localhost:3000/notes
    - http://localhost:3000/api-docs
+
+## Regras de validação
+- Título: entre 3 e 20 caracteres
+- Conteúdo: entre 3 e 200 caracteres
 
 ## Autenticação
 Use o endpoint de login para obter um token JWT:
@@ -61,6 +67,16 @@ Authorization: Bearer <jwt>
 - GET /notes
 - GET /notes/:id
 - PUT /notes/:id
+- DELETE /notes/:id
+
+## Testes
+Os testes funcionais da API estão localizados na pasta tests e podem ser executados com:
+
+```bash
+npm test
+```
+
+Também existe um workflow do GitHub Actions em .github/workflows/tests.yml para executar os testes automaticamente em push e pull request.
 
 ## Documentação Swagger
 A documentação Swagger está disponível em:

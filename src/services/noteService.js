@@ -12,6 +12,10 @@ class NoteService {
     return note;
   }
 
+  existsByTitle(title) {
+    return this.notes.some((note) => note.title.toLowerCase() === title.toLowerCase());
+  }
+
   getAllNotes() {
     return this.notes;
   }

@@ -75,6 +75,21 @@ class PutNotesTests {
         expect(response.status).to.equal(401);
         expect(response.body.message).to.equal('Token não fornecido');
       });
+
+      it('deve rejeitar atualização com body vazio', async () => {
+        const created = await request(app)
+          .post('/notes')
+          .set('Authorization', `Bearer ${token}`)
+          .send(fixtures.validNote);
+
+        const response = await request(app)
+          .put(`/notes/${created.body.note.id}`)
+          .set('Authorization', `Bearer ${token}`)
+          .send(fixtures.emptyBody);
+
+        expect(response.status).to.equal(400);
+        expect(response.body.message).to.equal('Informe pelo menos um campo para atualização');
+      });
     });
   }
 }
